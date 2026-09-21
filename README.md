@@ -1,4 +1,4 @@
-# New Orden — Playbook comercial
+# New Order Playbook — Comercial
 
 Site estático de apoio ao atendimento comercial da 99Food. Ele reúne 18 modelos de mensagem, filtros por etapa e situação, personalização local e cópia rápida de mensagens e códigos.
 
