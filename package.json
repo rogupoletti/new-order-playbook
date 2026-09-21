@@ -1,0 +1,10 @@
+{
+  "name": "new-orden-playbook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline commercial message playbook for New Orden.",
+  "scripts": {
+    "check": "node scripts/check-site.mjs",
+    "codex:check": "npm run check"
+  }
+}

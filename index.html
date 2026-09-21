@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#19232d">
+    <meta name="description" content="Playbook comercial New Orden para atendimento 99Food.">
+    <title>New Orden · Playbook comercial</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <a class="brand" href="#top" aria-label="New Orden — início">
+          <span class="emblem" aria-hidden="true">N.</span>
+          <span><small>99Food / Comercial</small><strong>New Orden<span>.</span></strong></span>
+        </a>
+        <p class="status"><i></i>Funciona sem internet</p>
+      </header>
+
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">PLAYBOOK DE ATENDIMENTO</p>
+          <h1 id="hero-title">A mensagem certa.<br>No momento certo.</h1>
+          <p>Escolha a etapa, encontre o modelo e personalize a mensagem em poucos cliques — tudo em um só lugar.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true"><b>ATENDIMENTO PRONTO</b><strong>Olá! Tudo bem? 👋</strong><span>Seu restaurante está quase pronto. Vamos concluir a próxima etapa juntos?</span></div>
+      </section>
+
+      <section class="headline" aria-labelledby="workspace-title">
+        <div><h2 id="workspace-title">Central de mensagens</h2><p>Selecione uma situação para visualizar e copiar o texto.</p></div>
+        <p class="count" id="total"></p>
+      </section>
+
+      <div class="workspace">
+        <aside class="panel sidebar" aria-label="Filtros e personalização">
+          <h2>Etapa do atendimento</h2>
+          <div class="phase-wrap" role="group" aria-label="Etapa">
+            <button class="phase active" data-phase="todos" aria-pressed="true">◯ Todas <span></span></button>
+            <button class="phase" data-phase="cadastro" aria-pressed="false">◈ Finalizar cadastro <span></span></button>
+            <button class="phase" data-phase="online" aria-pressed="false">◎ Ficar online <span></span></button>
+          </div>
+          <label class="field">Situação do cliente<select id="scenario"><option value="">Todas as situações</option></select></label>
+          <hr>
+          <h2>Personalizar mensagem</h2>
+          <p class="help">Preencha apenas os campos necessários para o atendimento.</p>
+          <label class="field">Nome da loja ou responsável<input id="name" autocomplete="off" placeholder="Ex.: Restaurante Sabor"></label>
+          <label class="field">Nome da executiva<input id="executive" autocomplete="off" placeholder="Ex.: Thaís"></label>
+          <label class="field">Data confirmada (se houver)<input id="date" autocomplete="off" placeholder="Ex.: 25/09"></label>
+          <p class="notice">✦ Os textos e códigos originais foram preservados. Verifique as notas de revisão antes de enviar uma mensagem.</p>
+        </aside>
+
+        <section class="panel templates" aria-labelledby="search-label">
+          <div class="list-head">
+            <label class="search" id="search-label"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar mensagem, assunto ou código…"></label>
+            <div><span id="shown"></span><button class="link-button" id="reset">Limpar filtros</button></div>
+          </div>
+          <div class="list" id="list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel detail" id="detail" aria-live="polite">
+          <div class="detail-top"><span id="detail-id"></span><span class="original-tag">● Modelo original</span></div>
+          <h2 id="detail-title"></h2><p id="detail-scenario"></p>
+          <div class="code"><small>CÓDIGO DO MODELO</small><code id="code"></code><button class="link-button" id="copy-code">Copiar código ↗</button></div>
+          <h3>Mensagem pronta para copiar</h3><div class="message" id="message"></div>
+          <div class="actions"><button class="primary" id="copy-message">▣ Copiar mensagem</button><button class="secondary" id="show-original">Ver original</button></div>
+          <details id="review"><summary>⚠ Pontos para conferir antes do envio</summary><ul id="warnings"></ul></details>
+          <p class="footer">Material de apoio interno. Os modelos não foram revalidados como mensagens oficiais atuais. Campos preenchidos não são enviados nem salvos.</p>
+        </section>
+      </div>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
