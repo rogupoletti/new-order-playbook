@@ -1,0 +1,4 @@
+# Copie para .dev.vars apenas para desenvolvimento local. Nunca use um valor real neste arquivo.
+SESSION_SECRET=replace-with-a-random-secret-of-at-least-32-characters
+# Opcional. Padrão: 28800 (8 horas). Mínimo: 900; máximo: 2592000.
+SESSION_TTL_SECONDS=28800

@@ -2,9 +2,17 @@
   "name": "new-order-playbook",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Offline commercial message playbook for New Orden.",
   "scripts": {
     "check": "node scripts/check-site.mjs",
-    "codex:check": "npm run check"
+    "codex:check": "npm run check",
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && npx wrangler pages dev dist",
+    "db:migrate:local": "npx wrangler d1 migrations apply new-order-playbook-auth --local",
+    "create-user": "node scripts/create-user.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.44.0"
   }
 }
