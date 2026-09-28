@@ -1,5 +1,25 @@
 "use strict";
 
+// Exibe a administração somente para sessões com perfil administrativo. A rota
+// continua protegida no servidor; este atalho é apenas uma conveniência visual.
+void (async () => {
+  try {
+    const response = await fetch('/api/me', { credentials: 'same-origin' });
+    if (!response.ok) return;
+    const user = await response.json();
+    if (user.role !== 'admin') return;
+    const actions = document.createElement('div');
+    actions.className = 'account-actions';
+    actions.innerHTML = '<a href="/admin/users">Administrar usuários</a><a href="/logout">Sair</a>';
+    Object.assign(actions.style, {
+      display: 'flex', gap: '12px', marginLeft: 'auto', whiteSpace: 'nowrap', fontSize: '12px', fontWeight: '800',
+    });
+    document.querySelector('.topbar')?.append(actions);
+  } catch {
+    // O playbook permanece utilizável mesmo que a consulta da sessão falhe.
+  }
+})();
+
 const sections=[...document.querySelectorAll('.content-section')];const nav=[...document.querySelectorAll('.nav-item')];let active='glossario';
 function go(id,el){if(!document.querySelector('#s-'+id))return;active=id;sections.forEach(x=>x.classList.toggle('active',x.dataset.section===id));nav.forEach(x=>{const yes=x.dataset.target===id;x.classList.toggle('active',yes);x.setAttribute('aria-current',yes?'page':'false')});document.querySelector('.hero').style.display=id==='glossario'?'flex':'none';window.scrollTo({top:0,behavior:'smooth'});if(el){el.closest('details.rtbo-topic')?.setAttribute('open','');requestAnimationFrame(()=>setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center'}),190))}}
 nav.forEach(b=>b.addEventListener('click',()=>go(b.dataset.target)));go('glossario');
