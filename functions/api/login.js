@@ -40,6 +40,15 @@ export async function onRequestPost(context) {
     return json({ ok: true }, { headers: { "Set-Cookie": session.cookie } });
   } catch (error) {
     console.error("Login error", error);
-    return json({ error: "Não foi possível entrar agora." }, { status: 503 });
+    const message = error instanceof Error ? error.message : "unknown";
+    const diagnostic = message.includes("SESSION_SECRET")
+      ? "session-secret"
+      : message.includes("D1") || message.includes("SQLITE")
+        ? "database"
+        : "runtime";
+    return json({ error: "Não foi possível entrar agora." }, {
+      status: 503,
+      headers: { "X-Auth-Diagnostic": diagnostic },
+    });
   }
 }
