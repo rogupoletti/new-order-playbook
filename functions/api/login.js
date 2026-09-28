@@ -43,9 +43,11 @@ export async function onRequestPost(context) {
     const message = error instanceof Error ? error.message : "unknown";
     const diagnostic = message.includes("SESSION_SECRET")
       ? "session-secret"
-      : message.includes("D1") || message.includes("SQLITE")
-        ? "database"
-        : "runtime";
+      : message.includes("D1") || message.includes("SQLITE") || message.includes("prepare") || message.includes("first") || message.includes("run")
+        ? "database-binding"
+        : message.includes("crypto") || message.includes("Crypto") || message.includes("PBKDF2") || message.includes("derive")
+          ? "cryptography"
+          : "runtime";
     return json({ error: "Não foi possível entrar agora." }, {
       status: 503,
       headers: { "X-Auth-Diagnostic": diagnostic },
