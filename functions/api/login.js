@@ -10,7 +10,7 @@ import {
 
 // Equaliza o custo de uma senha inválida quando o e-mail não existe, sem guardar
 // nenhuma credencial de usuário no código.
-const DUMMY_PASSWORD_HASH = "pbkdf2_sha512$210000$SUJsToH_B_y8ocM6MUwkaA$vuy93ivsVphl4A3mBWxNDmLF2Oi4sApdN5Grmr5MCtI";
+const DUMMY_PASSWORD_HASH = "pbkdf2_sha512$100000$q_98ULlOcHUHWJRHcIEVUQ$F-U9cnrTE8pfeaIsZwFdxKRHLyXvOjRE5GEvb-XFt2g";
 
 export async function onRequestPost(context) {
   let body;
@@ -40,20 +40,6 @@ export async function onRequestPost(context) {
     return json({ ok: true }, { headers: { "Set-Cookie": session.cookie } });
   } catch (error) {
     console.error("Login error", error);
-    const message = error instanceof Error ? error.message : "unknown";
-    const diagnostic = message.includes("SESSION_SECRET")
-      ? "session-secret"
-      : message.includes("D1") || message.includes("SQLITE") || message.includes("prepare") || message.includes("first") || message.includes("run")
-        ? "database-binding"
-        : message.includes("crypto") || message.includes("Crypto") || message.includes("PBKDF2") || message.includes("derive")
-          ? "cryptography"
-          : "runtime";
-    return json({ error: "Não foi possível entrar agora." }, {
-      status: 503,
-      headers: {
-        "X-Auth-Diagnostic": diagnostic,
-        "X-Auth-Detail": encodeURIComponent(message.slice(0, 160)),
-      },
-    });
+    return json({ error: "Não foi possível entrar agora." }, { status: 503 });
   }
 }

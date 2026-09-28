@@ -15,8 +15,8 @@ async function hashPassword(password) {
   if (password.length < 12 || password.length > 512) throw new Error("A senha deve ter entre 12 e 512 caracteres.");
   const salt = webcrypto.getRandomValues(new Uint8Array(16));
   const key = await webcrypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]);
-  const bits = await webcrypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-512", salt, iterations: 210000 }, key, 256);
-  return `pbkdf2_sha512$210000$${base64url(salt)}$${base64url(new Uint8Array(bits))}`;
+  const bits = await webcrypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-512", salt, iterations: 100000 }, key, 256);
+  return `pbkdf2_sha512$100000$${base64url(salt)}$${base64url(new Uint8Array(bits))}`;
 }
 
 function quote(value) {

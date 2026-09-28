@@ -2,7 +2,7 @@ const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
 export const SESSION_COOKIE = "__Host-new_order_session";
-const PASSWORD_ITERATIONS = 210000;
+const PASSWORD_ITERATIONS = 100000;
 const PASSWORD_BYTES = 32;
 const SESSION_BYTES = 32;
 
