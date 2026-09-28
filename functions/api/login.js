@@ -50,7 +50,10 @@ export async function onRequestPost(context) {
           : "runtime";
     return json({ error: "Não foi possível entrar agora." }, {
       status: 503,
-      headers: { "X-Auth-Diagnostic": diagnostic },
+      headers: {
+        "X-Auth-Diagnostic": diagnostic,
+        "X-Auth-Detail": encodeURIComponent(message.slice(0, 160)),
+      },
     });
   }
 }
